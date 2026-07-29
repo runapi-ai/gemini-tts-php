@@ -33,7 +33,7 @@
   "homepage": "https://runapi.ai/models/gemini-tts",
   "support": {
     "source": "https://github.com/runapi-ai/gemini-tts-php",
-    "docs": "https://runapi.ai/docs#sdk-gemini-tts",
+    "docs": "https://runapi.ai/docs/resources/sdks",
     "issues": "https://github.com/runapi-ai/gemini-tts-php/issues"
   },
   "keywords": [

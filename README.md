@@ -10,8 +10,8 @@ errors in PHP.
 
 This README is the PHP package guide for the public `gemini-tts-php` split
 repository. For model details, use https://runapi.ai/models/gemini-tts; for API
-reference, use https://runapi.ai/docs#gemini-tts; for SDK docs, use
-https://runapi.ai/docs#sdk-gemini-tts.
+reference, use https://runapi.ai/docs/api/gemini-tts/text-to-speech; for SDK docs, use
+https://runapi.ai/docs/resources/sdks.
 
 ## Install
 
@@ -71,8 +71,8 @@ or your secret manager; never commit API keys or callback secrets.
 ## Links
 
 - Model page: https://runapi.ai/models/gemini-tts
-- SDK docs: https://runapi.ai/docs#sdk-gemini-tts
-- Product docs: https://runapi.ai/docs#gemini-tts
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/gemini-tts/text-to-speech
 - Pricing and rate limits: https://runapi.ai/models/gemini-tts/gemini-2.5-pro-tts
 - Full catalog: https://runapi.ai/models
 - GitHub repository: https://github.com/runapi-ai/gemini-tts-php
