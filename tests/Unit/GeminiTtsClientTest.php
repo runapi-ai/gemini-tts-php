@@ -34,7 +34,7 @@ final class GeminiTtsClientTest extends TestCase
             'dialogue_turns' => [['speaker_id' => 'Speaker 1', 'text' => 'Welcome.']],
             'sample_context' => 'sample',
             'scene' => 'sample',
-            'speakers' => [['speaker_id' => 'Speaker 1', 'voice_name' => 'Fenrir', 'accent' => 'British (RP)', 'style' => 'Deadpan', 'pace' => 'Natural']],
+            'speakers' => [['speaker_id' => 'Speaker 1', 'voice_name' => 'Fenrir']],
             'temperature' => 0.5,
             'callback_url' => '',
             'seed' => null,
@@ -47,6 +47,9 @@ final class GeminiTtsClientTest extends TestCase
         self::assertSame('gemini-2.5-pro-tts', $body['model']);
         self::assertArrayNotHasKey('callback_url', $body);
         self::assertArrayNotHasKey('seed', $body);
+        self::assertArrayNotHasKey('accent', $body['speakers'][0]);
+        self::assertArrayNotHasKey('style', $body['speakers'][0]);
+        self::assertArrayNotHasKey('pace', $body['speakers'][0]);
     }
 
     public function testRunReturnsTypedCompletedResponseAndPreservesUnknownFields(): void

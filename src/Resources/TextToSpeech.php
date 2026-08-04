@@ -21,7 +21,7 @@ readonly class TextToSpeech extends TypedConfiguredResource
      * @param array{
      *   dialogue_turns: list<array{speaker_id: string, text: string}>,
      *   model: string,
-     *   speakers: list<array{speaker_id: string, voice_name: string, audio_profile?: string, accent: string, style: string, pace: string}>,
+     *   speakers: list<array{speaker_id: string, voice_name: string, audio_profile?: string, accent?: string, style?: string, pace?: string}>,
      *   callback_url?: string,
      *   sample_context?: string,
      *   scene?: string,
@@ -48,7 +48,7 @@ readonly class TextToSpeech extends TypedConfiguredResource
      * @param array{
      *   dialogue_turns: list<array{speaker_id: string, text: string}>,
      *   model: string,
-     *   speakers: list<array{speaker_id: string, voice_name: string, audio_profile?: string, accent: string, style: string, pace: string}>,
+     *   speakers: list<array{speaker_id: string, voice_name: string, audio_profile?: string, accent?: string, style?: string, pace?: string}>,
      *   callback_url?: string,
      *   sample_context?: string,
      *   scene?: string,
