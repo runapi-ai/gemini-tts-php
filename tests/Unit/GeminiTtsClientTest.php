@@ -25,8 +25,7 @@ final class GeminiTtsClientTest extends TestCase
     public function testCreatePostsCompactedBodyToCorrectPath(): void
     {
         $transport = new QueueHttpClient([
-            new Response(200, [], '{"id":"task_1"}'),
-        ]);
+            new Response(200, [], '{"id":"task_1"}')]);
         $client = new GeminiTtsClient(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $task = $client->textToSpeech->create([
@@ -37,8 +36,7 @@ final class GeminiTtsClientTest extends TestCase
             'speakers' => [['speaker_id' => 'Speaker 1', 'voice_name' => 'Fenrir']],
             'temperature' => 0.5,
             'callback_url' => '',
-            'seed' => null,
-        ]);
+            'seed' => null]);
 
         $body = json_decode((string) $transport->requests[0]->getBody(), true, flags: JSON_THROW_ON_ERROR);
 
@@ -56,8 +54,7 @@ final class GeminiTtsClientTest extends TestCase
     {
         $transport = new QueueHttpClient([
             new Response(200, [], '{"id":"task_1"}'),
-            new Response(200, [], '{"id":"task_1","status":"completed","audios":[{"url":"https://file.runapi.ai/result"}],"extra_field":"kept"}'),
-        ]);
+            new Response(200, [], '{"id":"task_1","status":"completed","audios":[{"url":"https://file.runapi.ai/result"}],"extra_field":"kept","usage":{"cost":0.05}}')]);
         $client = new GeminiTtsClient(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $result = $client->textToSpeech->run([
@@ -66,8 +63,7 @@ final class GeminiTtsClientTest extends TestCase
             'sample_context' => 'sample',
             'scene' => 'sample',
             'speakers' => [['speaker_id' => 'Speaker 1', 'voice_name' => 'Fenrir', 'accent' => 'British (RP)', 'style' => 'Deadpan', 'pace' => 'Natural']],
-            'temperature' => 0.5,
-        ]);
+            'temperature' => 0.5]);
 
         self::assertInstanceOf(CompletedAudioTaskResponse::class, $result);
         self::assertSame('https://file.runapi.ai/result', $result->audios[0]->url);
@@ -79,8 +75,7 @@ final class GeminiTtsClientTest extends TestCase
     {
         $transport = new QueueHttpClient([
             new Response(200, [], '{"id":"task_1"}'),
-            new Response(200, [], '{"id":"task_1","status":"completed"}'),
-        ]);
+            new Response(200, [], '{"id":"task_1","status":"completed","usage":{"cost":0.05}}')]);
         $client = new GeminiTtsClient(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $this->expectException(ValidationException::class);
@@ -92,8 +87,7 @@ final class GeminiTtsClientTest extends TestCase
             'sample_context' => 'sample',
             'scene' => 'sample',
             'speakers' => [['speaker_id' => 'Speaker 1', 'voice_name' => 'Fenrir', 'accent' => 'British (RP)', 'style' => 'Deadpan', 'pace' => 'Natural']],
-            'temperature' => 0.5,
-        ]);
+            'temperature' => 0.5]);
     }
 
 
@@ -101,8 +95,7 @@ final class GeminiTtsClientTest extends TestCase
     public function testSecondaryResourceUsesItsOwnPath(): void
     {
         $transport = new QueueHttpClient([
-            new Response(200, [], '{"id":"task_2"}'),
-        ]);
+            new Response(200, [], '{"id":"task_2"}')]);
         $client = new GeminiTtsClient(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $client->textToSpeech->create([
@@ -111,8 +104,7 @@ final class GeminiTtsClientTest extends TestCase
             'sample_context' => 'sample',
             'scene' => 'sample',
             'speakers' => [['speaker_id' => 'Speaker 1', 'voice_name' => 'Fenrir', 'accent' => 'British (RP)', 'style' => 'Deadpan', 'pace' => 'Natural']],
-            'temperature' => 0.5,
-        ]);
+            'temperature' => 0.5]);
 
         self::assertSame('/api/v1/gemini_tts/text_to_speech', $transport->requests[0]->getUri()->getPath());
     }

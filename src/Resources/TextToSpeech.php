@@ -10,7 +10,6 @@ use RunApi\Core\RequestOptions;
 use RunApi\Core\Resources\TypedConfiguredResource;
 use RunApi\GeminiTts\Models\AudioTaskResponse;
 use RunApi\GeminiTts\Models\CompletedAudioTaskResponse;
-use RunApi\GeminiTts\Types;
 
 /** Text to speech operations for Gemini TTS. */
 readonly class TextToSpeech extends TypedConfiguredResource
@@ -69,10 +68,8 @@ readonly class TextToSpeech extends TypedConfiguredResource
         return new self(
             $http,
             '/api/v1/gemini_tts/text_to_speech',
-            'gemini-tts/text-to-speech',
             AudioTaskResponse::class,
             CompletedAudioTaskResponse::class,
-            Types::TEXT_TO_SPEECH_MODELS,
             'text-to-speech',
             AudioTaskResponse::class,
             CompletedAudioTaskResponse::class,

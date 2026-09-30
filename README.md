@@ -30,6 +30,8 @@ use RunApi\GeminiTts\GeminiTtsClient;
 
 $client = new GeminiTtsClient(); // reads RUNAPI_API_KEY
 
+
+
 $task = $client->textToSpeech->create([
     'model' => 'gemini-2.5-pro-tts',
     'dialogue_turns' => [['speaker_id' => 'Speaker 1', 'text' => 'Welcome.']],
@@ -57,6 +59,7 @@ Use `create()` to submit a task and return quickly, `get()` to fetch the latest
 task state, and `run()` when a script should create and poll until completion.
 In web request handlers, prefer `create()` plus webhook or later `get()`
 polling so a worker is not held open.
+
 
 RunAPI-generated file URLs are temporary. Download and store generated files
 in your own durable storage within the retention window; do not treat returned
